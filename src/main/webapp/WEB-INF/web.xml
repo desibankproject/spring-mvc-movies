@@ -5,13 +5,10 @@
 	id="WebApp_ID" version="3.1">
 	
 	<!-- 
-	 ApplicationContext context=new ClassPathXmlApplicationContext("movie-service-dao.xml");
+	      ApplicationContext context=new ClassPathXmlApplicationContext("movie-service-dao.xml");
 		  IMovieService movieService=(IMovieService)context.getBean("MovieService");
-		  
-	ApplicationRootWebContextContainer
-	
-	
-	/WEB-INF/applicationContext.xml
+	      ApplicationRootWebContextContainer
+	     /WEB-INF/applicationContext.xml
 	 -->
 	
 	<listener>

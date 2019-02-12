@@ -11,5 +11,8 @@ public interface IMovieService {
 	public String deleteMovieByTitle(String title);
 	public List<Movie> findMoviesByTitle(String title);
 	public int findMovieCount();
+	public String deleteMovieByMid(int mid);
+	public Movie findMovieByMid(int mid);
+	public String update(Movie movie);
 
 }

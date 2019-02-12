@@ -26,6 +26,14 @@ public class MovieService implements IMovieService {
 		String result=movieDao.save(entity);
 		return result;
 	}
+	
+	@Override
+	public String update(Movie movie) {
+		MovieEntity entity=new MovieEntity();
+		BeanUtils.copyProperties( movie, entity);
+		String result=movieDao.update(entity);
+		return result;
+	}
 
 	@Override
 	public List<Movie> findMovies() {
@@ -38,11 +46,25 @@ public class MovieService implements IMovieService {
 		}
 		return movies;
 	}
+	
+	@Override
+	public Movie findMovieByMid(int mid) {
+	    	MovieEntity movieEntity  =movieDao.findMovieByMid(mid);
+			Movie movie=new Movie();
+			BeanUtils.copyProperties( movieEntity, movie);
+		  return movie;
+	}
 
 	@Override
 	public String deleteMovieByTitle(String title) {
 		return movieDao.deleteMovieByTitle(title);
 	}
+	
+	@Override
+	public String deleteMovieByMid(int mid) {
+		return movieDao.deleteMovieByMid(mid);
+	}
+
 
 	@Override
 	public List<Movie> findMoviesByTitle(String title) {

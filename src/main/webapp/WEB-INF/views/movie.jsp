@@ -13,7 +13,7 @@
 </header>
 <div class="container">
   <h2>Movie Page!</h2>
-  <a href="showMovies"><img src="img/movie.jpg" class="img-thumbnail" style="height: 100px;">Show Movies</a>
+  <a href="movies"><img src="img/movie.jpg" class="img-thumbnail" style="height: 100px;">Show Movies</a>
   	<br/> 	<br/> 	<br/> 
   	<form action="addMovie" method="post">
 			Title :

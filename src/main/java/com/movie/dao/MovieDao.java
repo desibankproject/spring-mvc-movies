@@ -16,6 +16,15 @@ public class MovieDao implements IMovieDao {
 	@Qualifier("jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 	
+	
+	@Override
+	public String update(MovieEntity entity) {
+		String query="update  movie_tbl set title=?,director=?,year=?,story=?,poster=?,language=? where mid=?";
+		Object data[]=new Object[]{entity.getTitle(),entity.getDirector(),entity.getYear(),entity.getStory(),entity.getPoster(),entity.getLanguage(),entity.getMid()};
+		jdbcTemplate.update(query,data);
+		return "success";
+	}
+	
 	@Override
 	public String save(MovieEntity entity) {
 		String query="insert into movie_tbl(title,director,year,story,poster,language) values(?,?,?,?,?,?)";
@@ -29,6 +38,21 @@ public class MovieDao implements IMovieDao {
 		String fecth="select * from  movie_tbl";
 		List<MovieEntity> movies=jdbcTemplate.query(fecth,new BeanPropertyRowMapper(MovieEntity.class));
 		return movies;
+	}
+	
+	@Override
+	public String deleteMovieByMid(int mid) {
+		String fecth="delete  from  movie_tbl where mid=?";
+		Object data[]=new Object[]{mid};
+		int rows=jdbcTemplate.update(fecth,data);
+		return rows!=0?"success":"failure";
+	}
+	
+	@Override
+	public MovieEntity findMovieByMid(int mid) {
+		String fecth="select * from  movie_tbl where mid="+mid;
+		MovieEntity movieEntity=jdbcTemplate.queryForObject(fecth,new BeanPropertyRowMapper<MovieEntity>(MovieEntity.class));
+		return movieEntity;
 	}
 	
 	@Override

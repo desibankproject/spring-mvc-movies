@@ -64,7 +64,10 @@
      <tr>
         <td>
         <img src="${movie.poster}" style="height: 200px;" class="img-thumbnail" >
-        <a href=""><img src="img/edit.png" class="img-thumbnail" style="height: 50px;"></a>
+        <br/> <br/>
+        <a href="editMovie?mid=${movie.mid}"><img src="img/edit.png" class="img-thumbnail" style="height: 50px;"></a>
+        &nbsp;&nbsp;
+          <a href="deleteMovie?mid=${movie.mid}"><img src="img/delete.png" class="img-thumbnail" style="height: 50px;"></a>
         </td>
       </tr>
     </tbody>
