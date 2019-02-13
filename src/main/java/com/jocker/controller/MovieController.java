@@ -57,7 +57,14 @@ public class MovieController {
 	}
 	
 	
-	
+	@GetMapping("/searchMovies")
+	public String searchMovies(@RequestParam(value="title",required=false) String title,Model model){
+		if(title!=null){
+			List<Movie> movies=movieService.findMoviesByTitle(title);
+			model.addAttribute("magicResults", movies);
+		}
+		return "search-movies"; ///WEB-INF/views/movie.jsp
+	}
 	
 	@PostMapping("/updateMovie")
 	public String updateMovie(@ModelAttribute Movie movie,Model model){
@@ -69,19 +76,7 @@ public class MovieController {
 	
 	@PostMapping("/addMovie")
 	public String registeStudent(@ModelAttribute Movie movie,Model model){
-		//Taking data from jsp
-	/*	String title=req.getParameter("title");
-		String year=req.getParameter("year");
-		String director=req.getParameter("director");
-		String language=req.getParameter("language");
-		String story=req.getParameter("story");
-		String poster=req.getParameter("poster");
-		 Movie movie=new Movie(title,year,director,language,story,poster);*/
-		/* ApplicationContext context=new ClassPathXmlApplicationContext("movie-service-dao.xml");
-		  IMovieService movieService=(IMovieService)context.getBean("MovieService");*/
 		  String hold= movieService.save(movie);
-		//model is used to carry data from controller to jsp
-		//it is similar to req.setAttribute("student", student);
 		  return "msuccess"; //no need to write extension
 	}
 

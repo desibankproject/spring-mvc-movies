@@ -12,8 +12,7 @@
 <header style="background-color: #062f6d;height:30px;">
 </header>
 <div class="container">
-  <h2>Edit Movie Page!</h2>
-  <a href="movies"><img src="img/movie.jpg" class="img-thumbnail" style="height: 100px;">Show Movies</a>
+  <%@include file="header.jsp" %>
   	<br/> 	<br/> 	<br/> 
   	<form action="updateMovie" method="post">
   			<input type="hidden" name="mid" value="${danger.mid}"/> 

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.movie.dao.IMovieDao;
-import com.movie.dao.MovieEntity;
+import com.movie.dao.entity.MovieEntity;
 import com.movie.model.Movie;
 
 @Service("MovieService")

@@ -1,4 +1,4 @@
-package com.movie.dao;
+package com.movie.dao.entity;
 
 public class MovieEntity {
 	private int mid;

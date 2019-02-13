@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home Page</title>
+  <title>Search Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,15 +13,18 @@
 <header style="background-color: #062f6d;height:30px;">
 </header>
 <div class="container">
- <%@include file="header.jsp" %>
+  <%@include file="header.jsp" %>
   	<br/> 
-  	<!-- <form action="searchMovie" method="get">
+  	<span style="color:red;font-size: 18px;">${message}</span>
+  		<br/> 	<br/> 
+  	<form action="searchMovies" method="get">
 			Title :
-			<input type="text" name="title" class="form-control" style="width: 50%;display: inline;margin-right: 30px;"> 	
-			<button type="submit" class="btn btn-primary">Search Movie</button>
-			<button type="Reset" class="btn btn-danger">Clear</button>
-	</form> -->
+			<input type="text" name="title" class="form-control" style="width: 50%"> 	
+			<br/> 	
+			<button type="submit" class="btn btn-primary">Search</button>
+	</form>
 	<hr/>
+	
 	  <p style="font-weight: bold;color: red;">Movie Search Result(s)</p>            
   
   
@@ -77,7 +80,6 @@
     
     </table>
 </c:forEach>
-	
 	
 </div>
 

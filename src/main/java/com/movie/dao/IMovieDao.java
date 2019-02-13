@@ -2,6 +2,8 @@ package com.movie.dao;
 
 import java.util.List;
 
+import com.movie.dao.entity.MovieEntity;
+
 public interface IMovieDao {
 	public String save(MovieEntity entity);
 	public List<MovieEntity> findMovies();
