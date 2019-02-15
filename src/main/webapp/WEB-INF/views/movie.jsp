@@ -1,3 +1,4 @@
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "sf"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,37 +15,33 @@
 <div class="container">
   <%@include file="header.jsp" %>
   	<br/> 	<br/> 	<br/> 
-  	<form action="addMovie" method="post">
+  	<sf:form action="addMovie" method="post"   modelAttribute="movieCommand"  enctype="multipart/form-data">>
 			Title :
-			<input type="text" name="title" class="form-control" style="width: 50%"> 	
+			<sf:input  path="title" class="form-control" style="width: 50%"/> 	
 			<br/> 	
 			Year :
-			<select name="year"  class="form-control" style="width: 50%">
-					<option>2018</option>
-					<option>2019</option>
-					<option>2020</option>
-					<option>2021</option>
-					<option>2022</option>
-			</select>
+			
+			<sf:select path="year"  class="form-control" style="width: 50%">
+					<sf:options  items="${yearOptions}"/>
+			</sf:select>
+			
 			<br/> 	
 				Director :
-			<input type="text" name="director" class="form-control" style="width: 50%"> 	
+			<sf:input  path="director" class="form-control" style="width: 50%"/> 	
 			<br/> 	
 			Language :
-			<select name="language"  class="form-control" style="width: 50%">
-					<option>English</option>
-					<option>Hindi</option>
-						<option>Russian</option>
-			</select>
+			<sf:select path="language"  class="form-control" style="width: 50%">
+					<sf:options  items="${languageOptions}"/>
+			</sf:select>
 			<br/> 	
 			Poster :
-			<input type="text" name="poster" class="form-control" style="width: 80%"> 	
+			<input   type="file" name="photo" class="form-control" style="width: 80%"/> 	
 			<br/> 	
 				Story  :
 				<textarea  name="story" rows="4" cols=""  class="form-control" style="width: 50%"></textarea>
 			<br/> 	
 			<button type="submit" class="btn btn-primary">Add Movie</button>
-	</form>
+	</sf:form>
 	<hr/>
 	
 </div>

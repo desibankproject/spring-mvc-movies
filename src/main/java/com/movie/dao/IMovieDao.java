@@ -13,4 +13,5 @@ public interface IMovieDao {
 	public String deleteMovieByMid(int mid);
 	public MovieEntity findMovieByMid(int mid);
 	public String update(MovieEntity entity);
+	byte[] findImageByMid(int mid);
 }

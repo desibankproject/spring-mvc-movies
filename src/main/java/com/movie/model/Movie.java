@@ -9,6 +9,9 @@ public class Movie {
 	private String language;
 	private String story;
 	private String poster;
+	private byte[] photo;
+	
+	
 
 	public Movie() {
 	}
@@ -20,6 +23,15 @@ public class Movie {
 		this.language = language;
 		this.story = story;
 		this.poster = poster;
+	}
+	
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	public int getMid() {

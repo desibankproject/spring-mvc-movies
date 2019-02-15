@@ -64,6 +64,11 @@ public class MovieService implements IMovieService {
 	public String deleteMovieByMid(int mid) {
 		return movieDao.deleteMovieByMid(mid);
 	}
+	
+	@Override
+	public byte[] findImageByMid(int mid) {
+		return movieDao.findImageByMid(mid);
+	}
 
 
 	@Override

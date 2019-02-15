@@ -1,11 +1,15 @@
 package com.movie.dao;
 
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Repository;
 
 import com.movie.dao.entity.MovieEntity;
@@ -29,9 +33,14 @@ public class MovieDao implements IMovieDao {
 	
 	@Override
 	public String save(MovieEntity entity) {
-		String query="insert into movie_tbl(title,director,year,story,poster,language) values(?,?,?,?,?,?)";
-		Object data[]=new Object[]{entity.getTitle(),entity.getDirector(),entity.getYear(),entity.getStory(),entity.getPoster(),entity.getLanguage()};
-		jdbcTemplate.update(query,data);
+       //Below lines are converting photo byte[] array into SqlLobValue 
+		LobHandler lobHandler=new DefaultLobHandler();
+        SqlLobValue sqlLobValue=new SqlLobValue(entity.getPhoto(),lobHandler);
+		String query="insert into movie_tbl(title,director,year,story,poster,language,photo) values(?,?,?,?,?,?,?)";
+        int[] dataType=new int[] { Types.VARCHAR, Types.VARCHAR,
+                Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.VARCHAR,Types.BLOB };
+		Object data[]=new Object[]{entity.getTitle(),entity.getDirector(),entity.getYear(),entity.getStory(),entity.getPoster(),entity.getLanguage(),sqlLobValue};
+		jdbcTemplate.update(query,data,dataType);
 		return "success";
 	}
 	
@@ -48,6 +57,14 @@ public class MovieDao implements IMovieDao {
 		Object data[]=new Object[]{mid};
 		int rows=jdbcTemplate.update(fecth,data);
 		return rows!=0?"success":"failure";
+	}
+	
+	@Override
+	public byte[] findImageByMid(int mid) {
+		String fecth="select photo  from  movie_tbl where mid=?";
+		Object data[]=new Object[]{mid};
+		byte[] photo=jdbcTemplate.queryForObject(fecth,data,byte[].class);
+		return photo;
 	}
 	
 	@Override

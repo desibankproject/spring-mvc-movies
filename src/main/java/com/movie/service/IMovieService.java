@@ -14,5 +14,6 @@ public interface IMovieService {
 	public String deleteMovieByMid(int mid);
 	public Movie findMovieByMid(int mid);
 	public String update(Movie movie);
+	byte[] findImageByMid(int mid);
 
 }

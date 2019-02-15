@@ -17,6 +17,9 @@
 			 
 			 <!-- enabling all the Spring 3.x features -->     
    			<mvc:annotation-driven/>
+   			
+   			<!-- Spring support to upload the image -->
+   			 <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
 			<!-- This i will explain today -->
 			<bean

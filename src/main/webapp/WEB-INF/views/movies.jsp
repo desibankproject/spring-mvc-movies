@@ -62,7 +62,15 @@
     <tbody>
      <tr>
         <td>
-        <img src="${movie.poster}" style="height: 200px;" class="img-thumbnail" >
+        
+        <c:if test="${empty movie.poster}">
+        		<img src="showPhoto?mid=${movie.mid}" style="height: 200px;" class="img-thumbnail" >
+		</c:if>
+		<c:if test="${not empty movie.poster}">
+    			<img src="${movie.poster}" style="height: 200px;" class="img-thumbnail" >
+		</c:if>
+        
+        
         <br/> <br/>
         <a href="editMovie?mid=${movie.mid}"><img src="img/edit.png" class="img-thumbnail" style="height: 50px;"></a>
         &nbsp;&nbsp;
