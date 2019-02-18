@@ -1,3 +1,5 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "sf"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,41 +16,39 @@
 <div class="container">
   <%@include file="header.jsp" %>
   	<br/> 	<br/> 	<br/> 
-  	<form action="updateMovie" method="post">
-  			<input type="hidden" name="mid" value="${danger.mid}"/> 
-  		
+  	<sf:form action="updateMovie" method="post" modelAttribute="danger"   enctype="multipart/form-data">
+  			<sf:hidden path="mid" /> 
 			Title :
-			<input type="text" name="title" class="form-control" style="width: 50%"  value="${danger.title}"> 	
+			<sf:input  class="form-control" style="width: 50%"  path="title" /> 	
 			<br/> 	
 			Year :
-			<select name="year"  class="form-control" style="width: 50%">
-					<option ${danger.year==2018?'selected':''}>2018</option>
-					<option ${danger.year==2019?'selected':''}>2019</option>
-					<option ${danger.year==2020?'selected':''}>2020</option>
-					<option ${danger.year==2021?'selected':''}>2021</option>
-					<option ${danger.year==2022?'selected':''}>2022</option>
-			</select>
+			<sf:select path="year"  class="form-control" style="width: 50%">
+					<sf:options items="${yearOptions}"/> 
+			</sf:select>
 			<br/> 	
 				Director :
-			<input type="text" name="director" class="form-control" style="width: 50%" value="${danger.director}"> 	
+			<sf:input  path="director" class="form-control" style="width: 50%"/> 	
 			<br/> 	
 			Language :
-			<select name="language"  class="form-control" style="width: 50%">
-			<option ${danger.language=='English'?'selected':''}>English</option>
-			<option ${danger.language=='Hindi'?'selected':''}>Hindi</option>
-			<option ${danger.language=='Russian'?'selected':''}>Russian</option>
-			</select>
+			<sf:select path="language"  class="form-control" style="width: 50%">
+				<sf:options items="${languageOptions}"/> 
+			</sf:select>
 			<br/> 	
 			Poster :
-			<input type="text" name="poster" class="form-control" style="width: 80%"  value="${danger.poster}"> 
-			<img src="${danger.poster}" class="img-thumbnail" style="height: 100px;">
+			<input type="file" name="photo" class="form-control" style="width: 80%"> 
+			<c:if test="${empty danger.poster}">
+        		<img src="showPhoto?mid=${danger.mid}" style="height: 200px;" class="img-thumbnail" >
+		</c:if>
+		<c:if test="${not empty danger.poster}">
+    			<img src="${danger.poster}" style="height: 200px;" class="img-thumbnail">
+		</c:if>
 				
 			<br/> 	
 				Story  :
 				<textarea  name="story" rows="4" cols=""  class="form-control" style="width: 50%">${danger.story}</textarea>
 			<br/> 	
 			<button type="submit" class="btn btn-primary">Update Movie</button>
-	</form>
+	</sf:form>
 	<hr/>
 	
 </div>

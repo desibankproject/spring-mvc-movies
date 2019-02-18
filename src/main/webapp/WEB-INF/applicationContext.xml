@@ -16,7 +16,7 @@
 		<context:component-scan base-package="com.movie.dao"/>
 		
 		<!-- This we cannot do with annotation -->
-		<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate	"  autowire="byName">
+		<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate	"  autowire="byType">
 				<!-- 		<property name="dataSource" ref="pdataSource"/> -->
 		</bean>
 		
@@ -27,12 +27,32 @@
 				<property name="password" value="root" />
 	</bean>
 	
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc:mysql://localhost:3306/movies_db" />
 				<property name="username" value="root" />
 				<property name="password" value="root" />
-	</bean>
+	</bean> -->
+	
+	
+	
+	<!-- Creating TransactionManager Bean, since JDBC we are creating of type 
+           DataSourceTransactionManager -->
+
+          <!-- Define transaction manager as bean -->
+          <bean id="transactionManager"
+               class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                              <property name="dataSource" ref="qdataSource" />
+           </bean>
+	
+	
+
+	<!-- Enable Annotation based Declarative Transaction Management 
+	//@Transactional   -->
+          <tx:annotation-driven proxy-target-class="true"
+                         transaction-manager="transactionManager" />
+	
+	
 		
 <!-- 		<import resource="jdbc-connection.xml"/> -->
 			
