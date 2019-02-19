@@ -54,6 +54,6 @@
 	
 	
 		
-<!-- 		<import resource="jdbc-connection.xml"/> -->
+	<import resource="spring-aop.xml"/>
 			
 	</beans>		
