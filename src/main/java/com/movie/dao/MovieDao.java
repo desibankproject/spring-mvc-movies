@@ -69,7 +69,7 @@ public class MovieDao implements IMovieDao {
 	public List<MovieEntity> findMovies() {
 		boolean b=TransactionSynchronizationManager.isActualTransactionActive();
 	       System.out.println("Transaction is not working.findMovies................."+ b);
-		String fecth="select * from  movie_tbl";
+		String fecth="select mid,title,director,year,story,poster,language from  movie_tbl";
 		List<MovieEntity> movies=jdbcTemplate.query(fecth,new BeanPropertyRowMapper(MovieEntity.class));
 		return movies;
 	}
