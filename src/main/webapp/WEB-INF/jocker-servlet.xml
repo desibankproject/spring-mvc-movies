@@ -14,7 +14,7 @@
 			
 			<!--  below line serving static resources -->
 		   <mvc:resources mapping="/img/**" location="/img/"  cache-period="31556926"/>
-			 
+			 		   <mvc:resources mapping="/html/**" location="/html/"  cache-period="0" />
 			 <!-- enabling all the Spring 3.x features -->     
    			<mvc:annotation-driven/>
    			
