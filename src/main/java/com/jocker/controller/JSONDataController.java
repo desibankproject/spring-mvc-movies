@@ -32,6 +32,15 @@ public class JSONDataController {
 				applicationResponse.setStatus("success");
 				return applicationResponse;	
 		}
+	 
+	   @GetMapping("/delete/movie")
+	   @ResponseBody	public ApplicationResponse  deleteMovie(@RequestParam("mid") int mid){
+		 		movieService.deleteMovieByMid(mid);
+		 		ApplicationResponse applicationResponse=new ApplicationResponse();
+				applicationResponse.setMessage("Hey! your movie is delete successfully from the database!");
+				applicationResponse.setStatus("success");
+				return applicationResponse;	
+		}
 	
 	@GetMapping("/movies/json")
    @ResponseBody	public List<Movie> showMoviesAsJson(){
