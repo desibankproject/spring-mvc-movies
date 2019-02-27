@@ -1,5 +1,14 @@
 package com.movie.dao.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity // means save this object into database
+@Table(name="hmovie_tbl")
 public class MovieEntity {
 	private int mid;
 	private String title;
@@ -23,7 +32,7 @@ public class MovieEntity {
 	}
 
 	
-	
+	@Column(columnDefinition="longblob")
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -32,6 +41,8 @@ public class MovieEntity {
 		this.photo = photo;
 	}
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getMid() {
 		return mid;
 	}
@@ -40,6 +51,7 @@ public class MovieEntity {
 		this.mid = mid;
 	}
 
+	@Column(length=1000)
 	public String getPoster() {
 		return poster;
 	}
@@ -48,6 +60,7 @@ public class MovieEntity {
 		this.poster = poster;
 	}
 
+	@Column(length=250)
 	public String getTitle() {
 		return title;
 	}
@@ -56,6 +69,7 @@ public class MovieEntity {
 		this.title = title;
 	}
 
+	@Column(length=5)
 	public String getYear() {
 		return year;
 	}
@@ -64,6 +78,7 @@ public class MovieEntity {
 		this.year = year;
 	}
 
+	@Column(length=100)
 	public String getDirector() {
 		return director;
 	}
@@ -72,6 +87,7 @@ public class MovieEntity {
 		this.director = director;
 	}
 
+	@Column(length=30)
 	public String getLanguage() {
 		return language;
 	}
@@ -80,6 +96,7 @@ public class MovieEntity {
 		this.language = language;
 	}
 
+	@Column(length=300)
 	public String getStory() {
 		return story;
 	}

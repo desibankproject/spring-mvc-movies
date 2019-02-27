@@ -18,12 +18,20 @@ public class MovieService implements IMovieService {
 	@Autowired
 	@Qualifier("MovieDao")
 	private IMovieDao movieDao;
+	
+
+	@Autowired
+	@Qualifier("MovieHibernateDao")
+	private IMovieDao iMovieHibernate;
+	
+	
 
 	@Override
 	public String save(Movie movie) {
 		MovieEntity entity=new MovieEntity();
 		BeanUtils.copyProperties( movie, entity);
-		String result=movieDao.save(entity);
+		String result=iMovieHibernate.save(entity);
+		//String result=movieDao.save(entity);
 		return result;
 	}
 	

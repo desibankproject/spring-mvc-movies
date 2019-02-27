@@ -90,7 +90,7 @@ public class MovieController {
 			List<Movie> movies=movieService.findMoviesByTitle(title);
 			model.addAttribute("magicResults", movies);
 		}
-		return "search-movies"; ///WEB-INF/views/movie.jsp
+		return "search-movies"; ///WEB-INF/views/search-movies.jsp
 	}
 	
 	@PostMapping("/updateMovie")
