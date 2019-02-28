@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.movie.dao.entity.CustomerEntity;
 import com.movie.dao.entity.LoginEntity;
 
 @Repository("LoginDao")
@@ -28,6 +29,13 @@ public class LoginDao implements ILoginDao {
 			ex.printStackTrace();
 		}
 		return loginEntity;
+	}
+
+
+	@Override
+	public String saveCustomer(CustomerEntity customerEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

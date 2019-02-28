@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.movie.model.Customer;
 import com.movie.model.Login;
 import com.movie.service.ILoginService;
 
@@ -21,6 +22,19 @@ public class LoginController {
 	@GetMapping("/oauth")
 	public String showLoginPage(Model model){
 		return "login";
+	}
+	
+	
+	@GetMapping("/cregister")
+	public String showCustomerRegistrationPage(Model model){
+		return "register";
+	}
+	
+	@PostMapping("/cregister")
+	public String saveCustomer(@ModelAttribute Customer customer,Model model){
+		String result=loginService.saveCustomer(customer);
+		model.addAttribute("message", "Hey ! you have been succesfully registered into the application!");
+		return "register";
 	}
 	
 

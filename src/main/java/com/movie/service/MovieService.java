@@ -15,14 +15,14 @@ import com.movie.model.Movie;
 @Service("MovieService")
 public class MovieService implements IMovieService {
 
-	@Autowired
+/*	@Autowired
 	@Qualifier("MovieDao")
-	private IMovieDao movieDao;
+	private IMovieDao movieDao;*/
 	
 
 	@Autowired
 	@Qualifier("MovieHibernateDao")
-	private IMovieDao iMovieHibernate;
+	private IMovieDao movieDao;
 	
 	
 
@@ -30,7 +30,7 @@ public class MovieService implements IMovieService {
 	public String save(Movie movie) {
 		MovieEntity entity=new MovieEntity();
 		BeanUtils.copyProperties( movie, entity);
-		String result=iMovieHibernate.save(entity);
+		String result=movieDao.save(entity);
 		//String result=movieDao.save(entity);
 		return result;
 	}
