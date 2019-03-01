@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.movie.dao.IMovieDao;
 import com.movie.dao.entity.MovieEntity;
+import com.movie.dao.entity.MovieType;
 import com.movie.model.Movie;
+import com.movie.model.Type;
 
 @Service("MovieService")
 public class MovieService implements IMovieService {
@@ -42,6 +44,19 @@ public class MovieService implements IMovieService {
 		String result=movieDao.update(entity);
 		return result;
 	}
+	
+	
+	@Override
+	public String saveMovieType(int mid,String movieType) {
+		MovieType cmovieType=new MovieType();
+		cmovieType.setDescription("TODO");
+		cmovieType.setName(movieType);
+		//This is most important
+		MovieEntity movieEntity  =movieDao.findMovieByMid(mid);
+		cmovieType.setMovie(movieEntity);
+		
+		return movieDao.saveMovieType(cmovieType);
+	}
 
 	@Override
 	public List<Movie> findMovies() {
@@ -49,7 +64,15 @@ public class MovieService implements IMovieService {
 		List<Movie>  movies=new ArrayList<Movie>();
 		for(MovieEntity entity:entities){
 			Movie movie=new Movie();
+			List<Type> types=new ArrayList<>();
+			//Below loop is for internal list copy
+			for(MovieType mt:entity.getMovieTypes()){
+				Type type=new  Type();
+				BeanUtils.copyProperties( mt, type);
+				types.add(type);
+			}
 			BeanUtils.copyProperties( entity, movie);
+			movie.setTypes(types);
 			movies.add(movie);
 		}
 		return movies;

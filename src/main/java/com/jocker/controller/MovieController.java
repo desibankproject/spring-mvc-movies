@@ -31,6 +31,19 @@ public class MovieController {
 	private IMovieService movieService;
 	
 	
+
+	@PostMapping("/add-movie-type")
+	public String addMovieType(@RequestParam("mid") int mid,@RequestParam("name") String movieType,Model model) {
+		
+		//This I forget to call...............
+		movieService.saveMovieType(mid, movieType);
+		
+		List<Movie> searchResults=movieService.findMovies();
+		//req.setAttribute("magicResults", searchResults);
+		model.addAttribute("magicResults", searchResults);
+		return "movies"; ///WEB-INF/views/movie.jsp
+	}
+	
 	@GetMapping("/editMovie")
 	public String editMovie(@RequestParam("mid") int mid,Model model) {
 		//fetching movie data from the database using mid

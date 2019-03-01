@@ -1,5 +1,7 @@
 package com.movie.model;
 
+import java.util.List;
+
 public class Movie {
 
 	private int mid;
@@ -10,8 +12,15 @@ public class Movie {
 	private String story;
 	private String poster;
 	private byte[] photo;
-	
-	
+	private List<Type> types;
+
+	public List<Type> getTypes() {
+		return types;
+	}
+
+	public void setTypes(List<Type> types) {
+		this.types = types;
+	}
 
 	public Movie() {
 	}

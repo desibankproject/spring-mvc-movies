@@ -54,6 +54,9 @@
       </tr>
     </tbody>
   </table>
+  <img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"> <b>Movie Types  :</b>    <c:forEach items="${movie.types}" var="type">
+   								  ${type.name},
+   							  </c:forEach>
     		</td>
     		
     	<td style="width: 30%;">
@@ -75,6 +78,8 @@
         <a href="editMovie?mid=${movie.mid}"><img src="img/edit.png" class="img-thumbnail" style="height: 50px;"></a>
         &nbsp;&nbsp;
           <a href="deleteMovie?mid=${movie.mid}"><img src="img/delete.png" class="img-thumbnail" style="height: 50px;"></a>
+            &nbsp;&nbsp;
+          <a href="javascript:openMovieTypeModal('${movie.mid}','${movie.title}');"><img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"></a>
         </td>
       </tr>
     </tbody>
@@ -88,6 +93,60 @@
 	
 	
 </div>
+
+<!-- The Modal -->
+
+<form method="post" action="add-movie-type">
+<div class="modal" id="movieTypeModal">
+  <div class="modal-dialog">
+    <div class="modal-content" style="margin-top: 150px;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Movie Type</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      		<input id="mid" name="mid" type="hidden">
+     		<div class="form-group">
+     				<label>Title</label>
+     				<input name="mtitle" id="mtitle" class="form-control" value="Hero" readonly="readonly">
+     		</div>
+     		
+     			<div class="form-group">
+     				<label>Type</label>
+     				<select name="name" id="tname" class="form-control">
+     					<option>Blueray</option>	
+     					<option>HD</option>	
+     					<option>3D</option>	
+     					<option>DVD</option>	
+     				</select>
+     		</div>
+     
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Add  Type</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</form>
+
+<script type="text/javascript">
+	function openMovieTypeModal(mid,title){
+		document.getElementById("mtitle").value=title;
+		document.getElementById("mid").value=mid;
+		$("#movieTypeModal").modal('show');
+	}
+
+</script>
 
 </body>
 </html>

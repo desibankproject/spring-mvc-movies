@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.movie.dao.entity.MovieEntity;
+import com.movie.dao.entity.MovieType;
 
 @Repository("MovieHibernateDao")
 @Transactional(value="hibernateTxManager")
@@ -21,6 +22,12 @@ public class MovieHibernateDao  implements IMovieDao{
 	
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();
+	}
+	
+	@Override
+	public String saveMovieType(MovieType movieType) {
+		getSession().save(movieType);
+		return "success";
 	}
 
 	@Override

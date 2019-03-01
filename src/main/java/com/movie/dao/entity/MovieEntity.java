@@ -1,10 +1,15 @@
 package com.movie.dao.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity // means save this object into database
@@ -18,6 +23,17 @@ public class MovieEntity {
 	private String story;
 	private String poster;
 	private byte[] photo;
+	private List<MovieType> movieTypes;
+	
+	//mappedBy - this is not responsible to  maintain the relationship
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "movie")
+	public List<MovieType> getMovieTypes() {
+		return movieTypes;
+	}
+
+	public void setMovieTypes(List<MovieType> movieTypes) {
+		this.movieTypes = movieTypes;
+	}
 
 	public MovieEntity() {
 	}
