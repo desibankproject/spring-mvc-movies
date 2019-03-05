@@ -45,7 +45,10 @@ public class MovieService implements IMovieService {
 		return result;
 	}
 	
-	
+	@Override
+	public void deleteMovieTypeByMtid(int mtid) {
+		 movieDao.deleteMovieTypeByMtid(mtid);
+	}
 	@Override
 	public String saveMovieType(int mid,String movieType) {
 		MovieType cmovieType=new MovieType();

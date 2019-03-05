@@ -19,4 +19,6 @@ public interface IMovieDao {
 	default String saveMovieType(MovieType movieType){
 		return null;
 	}
+	default void deleteMovieTypeByMtid(int mtid){
+	}
 }

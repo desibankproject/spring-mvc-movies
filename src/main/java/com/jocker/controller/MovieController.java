@@ -30,7 +30,15 @@ public class MovieController {
 	@Qualifier("MovieService")
 	private IMovieService movieService;
 	
-	
+	@GetMapping("/delete-movie-type")
+	public String deleteMovieByType(@RequestParam("mtid") int mtid,Model model) {
+		//This I forget to call...............
+		movieService.deleteMovieTypeByMtid(mtid);
+		List<Movie> searchResults=movieService.findMovies();
+		//req.setAttribute("magicResults", searchResults);
+		model.addAttribute("magicResults", searchResults);
+		return "movies"; ///WEB-INF/views/movie.jsp
+	}
 
 	@PostMapping("/add-movie-type")
 	public String addMovieType(@RequestParam("mid") int mid,@RequestParam("name") String movieType,Model model) {

@@ -74,6 +74,14 @@ public class MovieHibernateDao  implements IMovieDao{
 		getSession().delete(entity);
 		return "success";
 	}
+	
+	@Override
+	public void deleteMovieTypeByMtid(int mtid) {
+		Session session=getSession();
+		//loading the MovieType
+		MovieType entity=session.find(MovieType.class, mtid);
+		session.delete(entity);
+	}
 
 	@Override
 	public MovieEntity findMovieByMid(int mid) {

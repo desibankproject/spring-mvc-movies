@@ -20,7 +20,7 @@ public class MovieType {
 	private MovieEntity movie;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fmid", nullable = false)
 	public MovieEntity getMovie() {
 		return movie;

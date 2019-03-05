@@ -54,9 +54,10 @@
       </tr>
     </tbody>
   </table>
-  <img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"> <b>Movie Types  :</b>    <c:forEach items="${movie.types}" var="type">
-   								  ${type.name},
-   							  </c:forEach>
+  <img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"> <b>Movie Types  :</b>  
+  		 <c:forEach items="${movie.types}" var="type">
+   								<a href="javascript:deleteType(${type.mtid});"><img src="img/delete.png" class="img-thumbnail" style="height: 30px;"> </a> ${type.name},
+   			</c:forEach>
     		</td>
     		
     	<td style="width: 30%;">
@@ -136,10 +137,15 @@
     </div>
   </div>
 </div>
-
 </form>
 
 <script type="text/javascript">
+	function deleteType(mtid) {
+		//Submitting request to to this delete-movie-type with get method
+		window.location.href="delete-movie-type?mtid="+mtid;
+	//	window.location.href = 'http://www.google.com';
+		
+	}	
 	function openMovieTypeModal(mid,title){
 		document.getElementById("mtitle").value=title;
 		document.getElementById("mid").value=mid;
