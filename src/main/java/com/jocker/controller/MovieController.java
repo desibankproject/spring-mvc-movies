@@ -42,21 +42,19 @@ public class MovieController {
 
 	@PostMapping("/add-movie-type")
 	public String addMovieType(@RequestParam("mid") int mid,@RequestParam("name") String movieType,Model model) {
-		
 		//This I forget to call...............
 		movieService.saveMovieType(mid, movieType);
-		
-		List<Movie> searchResults=movieService.findMovies();
+		/*List<Movie> searchResults=movieService.findMovies();
 		//req.setAttribute("magicResults", searchResults);
-		model.addAttribute("magicResults", searchResults);
-		return "movies"; ///WEB-INF/views/movie.jsp
+		model.addAttribute("magicResults", searchResults);*/
+		return "redirect:/movies"; ///
 	}
 	
 	@GetMapping("/editMovie")
 	public String editMovie(@RequestParam("mid") int mid,Model model) {
 		//fetching movie data from the database using mid
 		Movie  movie=movieService.findMovieByMid(mid);
-		model.addAttribute("danger", movie);
+		model.addAttribute("danger", movie);																									
 		return "emovie"; ///movies
 	}
 	

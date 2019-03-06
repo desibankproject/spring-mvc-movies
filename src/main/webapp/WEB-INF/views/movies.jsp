@@ -56,7 +56,9 @@
   </table>
   <img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"> <b>Movie Types  :</b>  
   		 <c:forEach items="${movie.types}" var="type">
-   								<a href="javascript:deleteType(${type.mtid});"><img src="img/delete.png" class="img-thumbnail" style="height: 30px;"> </a> ${type.name},
+                                 <span id="movietype_${type.mtid}">  		 																																																										
+   									<a href="javascript:deleteType(${type.mtid});"><img src="img/delete.png" class="img-thumbnail" style="height: 30px;"> </a> ${type.name},
+   								</span>
    			</c:forEach>
     		</td>
     		
@@ -97,7 +99,7 @@
 
 <!-- The Modal -->
 
-<form method="post" action="add-movie-type">
+<form method="post"  id="addMovieTypeForm">
 <div class="modal" id="movieTypeModal">
   <div class="modal-dialog">
     <div class="modal-content" style="margin-top: 150px;">
@@ -130,7 +132,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <button type="submit" class="btn btn-primary">Add  Type</button>
+      <button type="button" class="btn btn-primary"  onclick="addMovieType();">Add  Type</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
@@ -142,14 +144,51 @@
 <script type="text/javascript">
 	function deleteType(mtid) {
 		//Submitting request to to this delete-movie-type with get method
-		window.location.href="delete-movie-type?mtid="+mtid;
-	//	window.location.href = 'http://www.google.com';
-		
+		//http://localhost:4554/movies-spring-jdbc/v3/movies/types/9882
+		var contextPath="${pageContext.request.contextPath}";
+	//	window.location.href="delete-movie-type?mtid="+mtid;
+		var request = new Request(contextPath+'/v3/movies/types/'+mtid, {
+									method: 'DELETE', 
+									headers: new Headers({
+												'Accept': 'application/json'
+									})
+		});
+			// Now use it!
+		fetch(request).then(function(response) { 
+				return response.json();
+		}).then(function(data) {
+                //jQuery - This is short cut for JavaScript or you  can say that it is library for JavaScript 
+			    $("#movietype_"+mtid).hide();
+		}); 
 	}	
+	
 	function openMovieTypeModal(mid,title){
 		document.getElementById("mtitle").value=title;
 		document.getElementById("mid").value=mid;
 		$("#movieTypeModal").modal('show');
+	}
+
+	function addMovieType(){
+				var typeName=$("#tname").val();
+				var pmid=$("#mid").val();
+				var obj={name:typeName,mid:pmid};
+				var contextPath="${pageContext.request.contextPath}";
+				var jsonData=JSON.stringify(obj);
+				var request = new Request(contextPath+"/v3/movies/types", {
+					method: 'POST', 
+					body:jsonData, 
+					headers: new Headers({
+						'Content-Type': 'application/json',
+						'Accept': 'application/json'
+					})
+				});
+				
+				// Now use it!
+				fetch(request).then(function(response) { 
+						return response.json();
+				}).then(function(data) {
+		               console.log(data);
+				}); 
 	}
 
 </script>
