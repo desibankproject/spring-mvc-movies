@@ -8,6 +8,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    		<style type="text/css">
+  		.zoomimg {
+						    display: inline-block;
+						    height: 200px;
+						    padding: 0px 5px 0px 5px;
+						    background-size: 100% 100%;
+						    background-repeat: no-repeat;
+						    background-position: center center;
+						    transition: all .5s ease;
+		}
+	.zoomimg:hover {
+  			    cursor: pointer;
+    			transform: scale(2.0);
+	  }
+  		
+  		</style>
 </head>
 <body >
 <header style="background-color: #062f6d;height:30px;">
@@ -55,11 +71,14 @@
     </tbody>
   </table>
   <img src="img/movie-type.png" class="img-thumbnail" style="height: 50px;"> <b>Movie Types  :</b>  
+  		 
+  		 <div id="typessection">
   		 <c:forEach items="${movie.types}" var="type">
                                  <span id="movietype_${type.mtid}">  		 																																																										
    									<a href="javascript:deleteType(${type.mtid});"><img src="img/delete.png" class="img-thumbnail" style="height: 30px;"> </a> ${type.name},
    								</span>
    			</c:forEach>
+    		</div>			
     		</td>
     		
     	<td style="width: 30%;">
@@ -70,10 +89,10 @@
         <td>
         
         <c:if test="${empty movie.poster}">
-        		<img src="showPhoto?mid=${movie.mid}" style="height: 200px;" class="img-thumbnail" >
+        		<img src="showPhoto?mid=${movie.mid}" class="zoomimg" >
 		</c:if>
 		<c:if test="${not empty movie.poster}">
-    			<img src="${movie.poster}" style="height: 200px;" class="img-thumbnail" >
+    			<img src="${movie.poster}" class="zoomimg" >
 		</c:if>
         
         
@@ -114,6 +133,8 @@
       <div class="modal-body">
       		<input id="mid" name="mid" type="hidden">
      		<div class="form-group">
+     				<span style="color:red;font-weight: bold;" id="popupMessage"></span>
+     				 <br/>
      				<label>Title</label>
      				<input name="mtitle" id="mtitle" class="form-control" value="Hero" readonly="readonly">
      		</div>
@@ -163,6 +184,7 @@
 	}	
 	
 	function openMovieTypeModal(mid,title){
+		$("#popupMessage").html("");
 		document.getElementById("mtitle").value=title;
 		document.getElementById("mid").value=mid;
 		$("#movieTypeModal").modal('show');
@@ -187,7 +209,19 @@
 				fetch(request).then(function(response) { 
 						return response.json();
 				}).then(function(data) {
-		               console.log(data);
+					  if(data.status=="success") {
+							  var mtid=data.num;
+							  var typeData="";
+							  //Here we are generating span in JavaScript
+							  typeData=typeData+'<span id="movietype_'+mtid+'">';  		 																																																										
+							  typeData=typeData+'<a href="javascript:deleteType('+mtid+');"><img src="img/delete.png" class="img-thumbnail" style="height: 30px;"> </a> '+typeName;  	
+							  typeData=typeData+'</span>'; 
+				               console.log(typeData);
+				               $("#typessection").append(typeData);
+				               $("#movieTypeModal").modal('hide');
+					}else{
+							$("#popupMessage").html(data.message);
+					}
 				}); 
 	}
 

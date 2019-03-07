@@ -50,7 +50,7 @@ public class MovieService implements IMovieService {
 		 movieDao.deleteMovieTypeByMtid(mtid);
 	}
 	@Override
-	public String saveMovieType(int mid,String movieType) {
+	public int saveMovieType(int mid,String movieType) {
 		MovieType cmovieType=new MovieType();
 		cmovieType.setDescription("TODO");
 		cmovieType.setName(movieType);
@@ -59,6 +59,14 @@ public class MovieService implements IMovieService {
 		cmovieType.setMovie(movieEntity);
 		
 		return movieDao.saveMovieType(cmovieType);
+	}
+	
+	@Override
+	public Type findMovieTypeByName(String name) {
+		MovieType movieType  =movieDao.findMovieTypeByName(name);
+		Type type=new Type();
+		BeanUtils.copyProperties( movieType, type);
+		return type;
 	}
 
 	@Override

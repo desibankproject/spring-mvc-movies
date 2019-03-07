@@ -16,9 +16,12 @@ public interface IMovieDao {
 	public MovieEntity findMovieByMid(int mid);
 	public String update(MovieEntity entity);
 	byte[] findImageByMid(int mid);
-	default String saveMovieType(MovieType movieType){
-		return null;
+	default int saveMovieType(MovieType movieType){
+		return 0;
 	}
 	default void deleteMovieTypeByMtid(int mtid){
+	}
+	default MovieType findMovieTypeByName(String name){
+		return null;
 	}
 }

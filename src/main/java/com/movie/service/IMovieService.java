@@ -3,6 +3,7 @@ package com.movie.service;
 import java.util.List;
 
 import com.movie.model.Movie;
+import com.movie.model.Type;
 
 public interface IMovieService {
 
@@ -15,7 +16,8 @@ public interface IMovieService {
 	public Movie findMovieByMid(int mid);
 	public String update(Movie movie);
 	byte[] findImageByMid(int mid);
-	String saveMovieType(int mid, String movieType);
+	int  saveMovieType(int mid, String movieType);
 	void deleteMovieTypeByMtid(int mtid);
+	Type findMovieTypeByName(String name);
 
 }

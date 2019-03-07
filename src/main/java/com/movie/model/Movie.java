@@ -2,6 +2,8 @@ package com.movie.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Movie {
 
 	private int mid;
@@ -11,6 +13,7 @@ public class Movie {
 	private String language;
 	private String story;
 	private String poster;
+	@JsonIgnore
 	private byte[] photo;
 	private List<Type> types;
 

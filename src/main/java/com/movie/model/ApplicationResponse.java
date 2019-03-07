@@ -1,9 +1,13 @@
 package com.movie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ApplicationResponse {
+	
 	private String status;
 	private int result;
 	private int num;
+	@JsonIgnore
 	private String message;
 	
 	

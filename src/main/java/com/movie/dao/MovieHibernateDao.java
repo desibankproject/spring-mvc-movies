@@ -25,9 +25,9 @@ public class MovieHibernateDao  implements IMovieDao{
 	}
 	
 	@Override
-	public String saveMovieType(MovieType movieType) {
-		getSession().save(movieType);
-		return "success";
+	public int saveMovieType(MovieType movieType) {
+		Integer mtid=(Integer)getSession().save(movieType);
+		return mtid;
 	}
 
 	@Override
@@ -89,6 +89,18 @@ public class MovieHibernateDao  implements IMovieDao{
 		return entity;
 	}
 
+	@Override
+	public MovieType findMovieTypeByName(String name) {
+		Query<MovieType> query=getSession().createQuery("from  MovieType as m where m.name=:pname"); //HQL
+		query.setParameter("pname", name);
+		 List<MovieType> movieTypes=query.list();
+		 if(movieTypes!=null && movieTypes.size()>0){
+			 return movieTypes.get(0);
+		 }else{
+			 return new MovieType();
+		 }
+	}
+	
 	@Override
 	public String update(MovieEntity entity) {
 		getSession().update(entity);
