@@ -15,7 +15,7 @@
   <h2>Login  User Page!</h2>
 <img src="img/login-icon.png"  style="height: 100px;">
   	<br/> 
-  	<span style="color:red;font-size: 18px;">${message}</span>
+  	<span style="color:red;font-size: 18px;">${message}${param.message}</span>
   		<br/> 	<br/> 
   	<form action="oauth" method="post">
 			Username :
