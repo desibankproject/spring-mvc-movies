@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tpo.com/movies"
+	xmlns:tns="http://www.tpo.com/movies" elementFormDefault="qualified">
+	
+	<element name="movies" type="tns:Movies"/>
+	
+	<complexType name="Movies">
+			<sequence>
+					<element name="movie" type="tns:MovieType" minOccurs="1" maxOccurs="5"/>
+			</sequence>
+	</complexType>
+	
+	<element name="movie" type="tns:MovieType"/>
+	
+	<complexType name="MovieType">
+			<sequence>
+					<element name="title" type="string" minOccurs="1" maxOccurs="1"/>
+					<element name="director" type="string" minOccurs="1" maxOccurs="1"/>
+					<element name="year" type="int"/>
+					<element name="language" type="string" minOccurs="1" maxOccurs="3"/>
+					<element name="poster" type="string" minOccurs="0" maxOccurs="1"/>
+			</sequence>
+	</complexType>
+	
+	<!-- <complexType name="Title"  base="string">
+		<attribute name="salutation" type="string"/>           
+	</complexType> -->
+	
+</schema>
