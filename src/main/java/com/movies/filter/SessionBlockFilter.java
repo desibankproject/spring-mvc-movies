@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
 
 import com.movie.model.Login;
 
+/**
+ * 
+ * @author Nagendra
+ *
+ */
 @WebFilter("/*")
 public class SessionBlockFilter implements Filter {
 	
