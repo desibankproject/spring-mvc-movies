@@ -14,16 +14,25 @@
 	
 	<complexType name="MovieType">
 			<sequence>
-					<element name="title" type="string" minOccurs="1" maxOccurs="1"/>
+					<element name="title" type="tns:Title" minOccurs="1" maxOccurs="1"/>
 					<element name="director" type="string" minOccurs="1" maxOccurs="1"/>
-					<element name="year" type="int"/>
+					<element name="year" type="tns:Year"/>
 					<element name="language" type="string" minOccurs="1" maxOccurs="3"/>
 					<element name="poster" type="string" minOccurs="0" maxOccurs="1"/>
 			</sequence>
+			<attribute name="mid" type="int" default="801"/>
 	</complexType>
 	
-	<!-- <complexType name="Title"  base="string">
-		<attribute name="salutation" type="string"/>           
-	</complexType> -->
+	<simpleType name="Year">
+	  <restriction base = "integer">
+         <minInclusive value = "2000"/>
+         <maxInclusive value = "2999"/>
+      </restriction>
+	</simpleType>
 	
+   <simpleType name="Title">
+      <restriction base = "string">
+         <pattern value = "[a-zA-Z0-9]+"/>
+      </restriction>
+   </simpleType>
 </schema>

@@ -34,6 +34,9 @@ public class SessionBlockFilter implements Filter {
 		allowsResources.add("/cregister");
 		allowsResources.add("/test.php");
 		
+		allowsResources.add("/moviesService");
+		
+		
 	}
 	
 
