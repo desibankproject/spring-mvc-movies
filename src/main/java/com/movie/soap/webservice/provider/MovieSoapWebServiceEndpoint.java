@@ -24,6 +24,15 @@ public class MovieSoapWebServiceEndpoint {
 		applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	}
 	
+	public String greet(String name){
+		String message="Hello "+name+" , you are most welcome!!!!!!!!!!!!";
+		return message;
+	}
+
+	public int add(int num1,int num2) {
+		return num1+num2;
+	}
+	
 	public List<Movie> showMovies(){
 		MovieService  movieService=(MovieService)applicationContext.getBean("MovieService");
 		List<Movie> searchResults=movieService.findMovies();
