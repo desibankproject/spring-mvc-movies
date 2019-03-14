@@ -24,7 +24,15 @@ public class MovieSoapWebServiceEndpoint {
 		applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	}
 	
-	public String greet(String name){
+	public String greet(String name) throws SoapServerException{
+			SoapError fault=new SoapError();
+			if("apple".equalsIgnoreCase(name)){
+				fault.setCode("E019");
+				fault.setMessage("Apple is really not good name to greet!!!");
+				SoapServerException exception=new SoapServerException("Problem in server side validation", fault);
+				throw exception;
+		}
+		
 		String message="Hello "+name+" , you are most welcome!!!!!!!!!!!!";
 		return message;
 	}
